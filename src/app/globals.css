@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Mirano (Extended Freebie — Light weight; licensed for commercial use,
+  see public/fonts/Freebie License with Commercial Grants.pdf). Only a
+  Light + Light Italic cut is available, so both are mapped to weight
+  400. Headings that use font-display + font-bold together are
+  browser-synthesized bold (there's no real bold cut of Mirano) — if a
+  heavier cut is bought later, add it here as a separate @font-face at
+  font-weight: 700 for a true bold instead of a synthesized one.
+*/
+@font-face {
+  font-family: "Mirano";
+  src:
+    url("/fonts/Mirano-Regular.woff") format("woff"),
+    url("/fonts/Mirano-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mirano";
+  src:
+    url("/fonts/Mirano-Italic.woff") format("woff"),
+    url("/fonts/Mirano-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-display: "Mirano", "Fraunces", serif;
+  --font-sans: "IBM Plex Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #051D41;
+  background: #FFFFFF;
+}
+
+::selection {
+  background: #051D41;
+  color: #ffffff;
+}
+
+@layer components {
+  .input {
+    @apply rounded-card border border-line bg-paper px-4 py-2.5 text-navy placeholder:text-navy/30 focus:border-navy/40;
+  }
+}
+
+/* Visible keyboard focus everywhere, without the default browser ring
+   fighting our rounded corners. */
+:focus-visible {
+  outline: 2px solid #051D41;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
